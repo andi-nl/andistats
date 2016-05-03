@@ -1,7 +1,6 @@
 library("jsonlite")
-library("lubridate")
 
-myFunc <- function( myJSON){
+normcomp <- function( myJSON){
   json <- fromJSON(myJSON)
   no.patients <- length(head(json,-3))
   mypatdata <- NULL
@@ -167,4 +166,4 @@ f <- file("stdin")
 open(f)
 json_string <- readLines(f)
 
-myFunc(json_string)
+normcomp(json_string)
