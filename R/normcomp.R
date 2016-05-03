@@ -167,10 +167,3 @@ normcomp <- function( myJSON){
   return(myoutputdata)
 
 }
-
-#!/usr/bin/env Rscript
-f <- file("stdin")
-open(f)
-json_string <- readLines(f)
-
-normcomp(json_string)
