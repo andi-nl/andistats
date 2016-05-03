@@ -1,6 +1,13 @@
-library("jsonlite")
-
+#' Title
+#'
+#' @param myJSON
+#' @importFrom jsonlite fromJSON toJSON
+#' @return
+#' @export
+#'
+#' @examples
 normcomp <- function( myJSON){
+
   json <- fromJSON(myJSON)
   no.patients <- length(head(json,-3))
   mypatdata <- NULL
