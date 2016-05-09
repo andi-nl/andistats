@@ -1,4 +1,4 @@
-#' Title
+#' Title Perform multivariate and univariate normative comparisons
 #'
 #' @param myJSON
 #' @importFrom jsonlite fromJSON toJSON
