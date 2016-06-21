@@ -1,8 +1,8 @@
 #' Title Perform multivariate and univariate normative comparisons
 #'
-#' @param myJSON
+#' @param myJSON hierarchically structured json file or json formatted text containing patient information with nested test information (including scores)
 #' @importFrom jsonlite fromJSON toJSON
-#' @return
+#' @return flat json file containing test information and test results (differences, statistics, degrees of freedom) with repeated results for the  multivariate test
 #' @export
 #'
 #' @examples
