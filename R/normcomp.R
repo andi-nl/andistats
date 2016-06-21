@@ -9,7 +9,7 @@
 normcomp <- function( myJSON){
 
   json <- fromJSON(myJSON)
-  no.patients <- length(head(json,-3))
+  no.patients <- length(head(json,-4))
   mypatdata <- NULL
   for( i in 1:(no.patients) ){
     demos <- unlist(head(json[[i]],6))
