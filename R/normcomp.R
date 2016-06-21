@@ -5,7 +5,7 @@
 #' @return flat json file containing test information and test results (differences, statistics, degrees of freedom) with repeated results for the  multivariate test
 #' @export
 #'
-#' @examples
+#' @examples normcomp("jsonfile")
 normcomp <- function( myJSON){
 
   json <- fromJSON(myJSON)

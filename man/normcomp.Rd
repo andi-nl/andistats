@@ -2,11 +2,20 @@
 % Please edit documentation in R/normcomp.R
 \name{normcomp}
 \alias{normcomp}
-\title{Title}
+\title{Title Perform multivariate and univariate normative comparisons}
 \usage{
 normcomp(myJSON)
 }
+\arguments{
+\item{myJSON}{hierarchically structured json file or json formatted text containing patient information with nested test information (including scores)}
+}
+\value{
+flat json file containing test information and test results (differences, statistics, degrees of freedom) with repeated results for the  multivariate test
+}
 \description{
-Title
+Title Perform multivariate and univariate normative comparisons
+}
+\examples{
+normcomp("jsonfile")
 }
 
