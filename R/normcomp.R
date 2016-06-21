@@ -1,4 +1,4 @@
-#' Title Perform multivariate and univariate normative comparisons
+#' Perform multivariate and univariate normative comparisons
 #'
 #' @param myJSON hierarchically structured json file or json formatted text containing patient information with nested test information (including scores)
 #' @importFrom jsonlite fromJSON toJSON

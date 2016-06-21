@@ -2,7 +2,7 @@
 % Please edit documentation in R/normcomp.R
 \name{normcomp}
 \alias{normcomp}
-\title{Title Perform multivariate and univariate normative comparisons}
+\title{Perform multivariate and univariate normative comparisons}
 \usage{
 normcomp(myJSON)
 }
@@ -13,7 +13,7 @@ normcomp(myJSON)
 flat json file containing test information and test results (differences, statistics, degrees of freedom) with repeated results for the  multivariate test
 }
 \description{
-Title Perform multivariate and univariate normative comparisons
+Perform multivariate and univariate normative comparisons
 }
 \examples{
 normcomp("jsonfile")
