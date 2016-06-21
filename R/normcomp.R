@@ -141,13 +141,17 @@ normcomp <- function( myJSON){
     plotnames <- trimws(paste(ANDImetadata[['ID1']], ANDImetadata[['Long.name.2']], ANDImetadata[['Long.name.3']][!is.na(ANDImetadata[['Long.name.3']])]))
     shortestpossiblenames <- trimws(paste(ANDImetadata[['ID1']], ANDImetadata[['ID2']], ANDImetadata[['ID3']][!is.na(ANDImetadata[['Long.name.3']])]))
 
+    whichnames <- c()
+    for( eachvar in mydata[['uniqueid']]){
+      whichnames <- c( whichnames, which( ANDImetadata[['uniqueid']] == eachvar))
+    }
 
     myoutputdataframe <- data.frame(
       id = mydata[['patid']],
       testname = mydata[['uniqueid']],
-      longtestname = longtestnames[ANDImetadata[['uniqueid']] %in% mydata[['uniqueid']]],
-      plotname = plotnames[ANDImetadata[['uniqueid']] %in% mydata[['uniqueid']]],
-      shortestname = shortestpossiblenames[ANDImetadata[['uniqueid']] %in% mydata[['uniqueid']]],
+      longtestname = longtestnames[whichnames],
+      plotname = plotnames[whichnames],
+      shortestname = shortestpossiblenames[whichnames],
       tails = mydata[['sig']],
       inneredge = inneredge,
       outeredge = outeredge,
