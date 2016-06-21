@@ -1,14 +1,14 @@
-listcompositecalculatons <-
+listcompositecalculations <-
       list(
           "AVLT__total1_to_5" = function(AVLT__trial1, AVLT__trial2, AVLT__trial3, AVLT__trial4, AVLT__trial5, ...) {
             return(AVLT__trial1 + AVLT__trial2 + AVLT__trial3 + AVLT__trial4 + AVLT__trial5)
             },
           "TMT__interference" = function(TMTa, TMTb, ...) {
             return(TMT__b - TMT__a)
-          }
+          },
           "BADS__ruleshift__1and2scorediff" = function( BADS__ruleshift__1score, BADS__ruleshift__2score){
             return(BADS__ruleshift__2score - BADS__ruleshift__1score)
-          }
+          },
           "BADS__ruleshift__1and2timediff" = function( BADS__ruleshift__1time, BADS__ruleshift__2time){
             return(BADS__ruleshift__2time - BADS__ruleshift__1time)
           }
