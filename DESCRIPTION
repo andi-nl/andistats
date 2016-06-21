@@ -1,11 +1,13 @@
 Package: andistats
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Statistical back end to the ANDI project.
 Version: 0.1
 Date: 2016-05-03
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
+Author: Joost Agelink van Rentergem
+Maintainer: Joost Agelink van Rentergem <j.a.agelinkvanrentergemzandvliet@uva.nl>
+Description: Performs normative comparisons using summary statistics as calculated from data gathered
+in the ANDI project. Also will contain data processing functions and composite score calculations that
+may come in handy for this project.
 License: What license is it under?
 LazyData: TRUE
 RoxygenNote: 5.0.1
