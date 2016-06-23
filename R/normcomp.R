@@ -9,17 +9,12 @@
 normcomp <- function( myJSON){
 
   json <- fromJSON(myJSON)
-  no.patients <- length(head(json,-4))
+  no.patients <- nrow(json$patientScores)
   mypatdata <- NULL
   for( i in 1:(no.patients) ){
-    demos <- unlist(head(json[[i]],6))
-    testinfo <- json[[i]][7][[1]]
-    if( length( testinfo ) == 1){
-      no.tests <- length( testinfo )
-    }
-    if( length( testinfo ) > 1){
-      no.tests <- nrow(testinfo)
-    }
+    demos <- json$patientScores[i,1:6]
+    testinfo <- json$patientScores[i,7][[1]]
+    no.tests <- nrow(testinfo)
 
     mypatdata <- rbind( mypatdata, cbind( matrix(rep(demos, no.tests), no.tests, byrow = T), testinfo))
   }
@@ -28,11 +23,12 @@ normcomp <- function( myJSON){
                             "Dataset", "SPSS_name", "highborder", "highweb", "lowborder", "lowweb",
                             "score")
   mypatdata[['patid']] <- as.character(mypatdata[['patid']])
-  # mypatdata[['AGE']] <- year(as.period(interval(ymd(substring(mypatdata[['dob']],1,10)),ymd(substring(mypatdata[['dot']],1,10))))) - 65
+  mypatdata[['SEX']] <- as.numeric(mypatdata[['SEX']])
+  mypatdata[['age']] <- as.numeric(mypatdata[['age']]) - 65
   mypatdata[['EDU']] <- as.numeric(as.character(mypatdata[['EDU']]))
-  mypatdata[['conf']] <- as.numeric(json[['conf']])
-  mypatdata[['sig']] <- json[['sig']]
-  mypatdata[['nomative']] <- json[['nomative']]
+  mypatdata[['conf']] <- as.numeric(json$settings$conf)
+  mypatdata[['sig']] <- json$settings$sig
+  mypatdata[['normative']] <- json$settings$normative
 
   # defaultvalues
   uniqueID <- ANDImetadata[['uniqueid']]
