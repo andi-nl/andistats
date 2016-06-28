@@ -12,14 +12,14 @@ normcomp <- function( myJSON){
   no.patients <- nrow(json$patientScores)
   mypatdata <- NULL
   for( i in 1:(no.patients) ){
-    demos <- json$patientScores[i,1:6]
-    testinfo <- json$patientScores[i,7][[1]]
+    demos <- c( json$patientScores$id[i], json$patientScores$age[i], json$patientScores$sex[i], json$patientScores$education[i])
+    testinfo <- json$patientScores$test[i][[1]]
     no.tests <- nrow(testinfo)
 
     mypatdata <- rbind( mypatdata, cbind( matrix(rep(demos, no.tests), no.tests, byrow = T), testinfo))
   }
 
-  colnames( mypatdata) <- c("patid", "age", "dob", "dot", "SEX", "EDU", "uniqueid", "label",
+  colnames( mypatdata) <- c("patid", "age", "SEX", "EDU", "uniqueid", "label",
                             "Dataset", "SPSS_name", "highborder", "highweb", "lowborder", "lowweb",
                             "score")
   mypatdata[['patid']] <- as.character(mypatdata[['patid']])
