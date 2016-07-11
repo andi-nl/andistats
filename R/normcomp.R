@@ -29,7 +29,7 @@ normcomp <- function( myJSON){
   mypatdata[['conf']] <- as.numeric(json$settings$conf)
   mypatdata[['sig']] <- json$settings$sig
   mypatdata[['normative']] <- json$settings$normative
-
+  mypatdata$score[mypatdata$score == 999999999] <- NA
   # defaultvalues
   uniqueID <- ANDImetadata[['uniqueid']]
 
@@ -38,7 +38,6 @@ normcomp <- function( myJSON){
   colnames(covariancemat) <- uniqueID
 
   totaloutputdataframe <- NULL
-  whichtests <- unique(mypatdata[['uniqueid']])
   for( pat in unique(mypatdata[['patid']])){
     mydata <- mypatdata[mypatdata[['patid']] == pat,]
     mydata[['score']] <- ((mydata[['score']] ^ ANDImetadata[['mybestpowertransform']][ANDImetadata[['uniqueid']] %in% mydata[['uniqueid']]] *
@@ -46,7 +45,8 @@ normcomp <- function( myJSON){
                              ANDImetadata[['mymean.transformedscores']][ANDImetadata[['uniqueid']] %in% mydata[['uniqueid']]]) /
                             ANDImetadata[['mysd.transformedscores']][ANDImetadata[['uniqueid']] %in% mydata[['uniqueid']]]) *
       ANDImetadata[['recode']][ANDImetadata[['uniqueid']] %in% mydata[['uniqueid']]]
-
+    mydata <- mydata[!is.na(mydata$score),]
+    whichtests <- unique(mydata[['uniqueid']])
 
 
     #C <- covariancemat[ rownames(covariancemat) %in% whichtests, colnames(covariancemat) %in% whichtests]
@@ -162,7 +162,7 @@ normcomp <- function( myJSON){
     )
     totaloutputdataframe <- rbind( totaloutputdataframe, myoutputdataframe)
   }
-  myoutputdata <- toJSON( totaloutputdataframe,pretty = T)
+  myoutputdata <- toJSON( totaloutputdataframe,pretty = T, na = "string")
   #cat(myoutputdata)
   return(myoutputdata)
 
