@@ -31,6 +31,8 @@ normcomp <- function( myJSON){
   mypatdata[['normative']] <- json$settings$normative
   mypatdata$score[mypatdata$score == 999999999] <- NA
   # defaultvalues
+  load(paste0("./data/", mypatdata[['normative']][1], ".rda"))
+
   uniqueID <- ANDImetadata[['uniqueid']]
 
   covariancemat <- betweencov + withincov
