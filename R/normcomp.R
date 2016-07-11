@@ -47,7 +47,7 @@ normcomp <- function( myJSON){
       ANDImetadata[['recode']][ANDImetadata[['uniqueid']] %in% mydata[['uniqueid']]]
     mydata <- mydata[!is.na(mydata$score),]
     whichtests <- unique(mydata[['uniqueid']])
-
+    if( length(whichtests) > 0){
 
     #C <- covariancemat[ rownames(covariancemat) %in% whichtests, colnames(covariancemat) %in% whichtests]
     C <- covariancemat[ rownames(covariancemat) %in% whichtests, colnames(covariancemat) %in% whichtests,drop=FALSE]
@@ -161,6 +161,7 @@ normcomp <- function( myJSON){
       multivariatep = MNCpvalue
     )
     totaloutputdataframe <- rbind( totaloutputdataframe, myoutputdataframe)
+    }
   }
   myoutputdata <- toJSON( totaloutputdataframe,pretty = T, na = "string")
   #cat(myoutputdata)
