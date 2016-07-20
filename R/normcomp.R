@@ -31,6 +31,10 @@ normcomp <- function( myJSON){
   mypatdata[['normative']] <- json$settings$normative
   mypatdata$score[mypatdata$score == 999999999] <- NA
   # defaultvalues
+  ANDImetadata <- sysdata[[mypatdata[['normative']][1]]]$ANDImetadata
+  betweencov <- sysdata[[mypatdata[['normative']][1]]]$betweencov
+  withincov <- sysdata[[mypatdata[['normative']][1]]]$withincov
+  beta <- sysdata[[mypatdata[['normative']][1]]]$beta
 
   uniqueID <- ANDImetadata[['uniqueid']]
 
