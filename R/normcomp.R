@@ -31,7 +31,7 @@ normcomp <- function( myJSON){
   mypatdata[['normative']] <- json$settings$normative
   mypatdata$score[mypatdata$score == 999999999] <- NA
   # defaultvalues
-  data(mypatdata[['normative']][1])
+  data(list = mypatdata[['normative']][1])
 
   uniqueID <- ANDImetadata[['uniqueid']]
 
