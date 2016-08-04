@@ -1,6 +1,6 @@
 #' Perform multivariate and univariate normative comparisons
 #'
-#' @param myJSON hierarchically structured json file or json formatted text containing patient information with nested test information (including scores)
+#' @param myJSON hierarchically structured list as read in from json (e.g. by jsonlite:::fromJSON) containing patient information with nested test information (including scores)
 #' @importFrom jsonlite fromJSON toJSON
 #' @return flat json file containing test information and test results (differences, statistics, degrees of freedom) with repeated results for the  multivariate test
 #' @export
@@ -8,7 +8,7 @@
 #' @examples normcomp("jsonfile")
 normcomp <- function( myJSON){
 
-  json <- fromJSON(myJSON)
+  json <- myJSON
   no.patients <- nrow(json$patientScores)
   mypatdata <- NULL
   for( i in 1:(no.patients) ){
