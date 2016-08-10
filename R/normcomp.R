@@ -19,9 +19,10 @@ normcomp <- function( myJSON){
     mypatdata <- rbind( mypatdata, cbind( matrix(rep(demos, no.tests), no.tests, byrow = T), testinfo))
   }
 
-  colnames( mypatdata) <- c("patid", "age", "SEX", "EDU", "uniqueid", "label",
-                            "Dataset", "SPSS_name", "highborder", "highweb", "lowborder", "lowweb",
-                            "score")
+  names( mypatdata)[1:4] <- c("patid", "age", "SEX", "EDU")
+  names( mypatdata)[colnames(mypatdata) == "id"] <- "uniqueid"
+  names( mypatdata)[colnames(mypatdata) == "value"] <- "score"
+
   mypatdata[['patid']] <- as.character(mypatdata[['patid']])
   mypatdata[['SEX']] <- as.numeric(mypatdata[['SEX']])
   mypatdata[['age']] <- as.numeric(mypatdata[['age']]) - 65
