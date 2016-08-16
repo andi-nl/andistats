@@ -82,7 +82,7 @@ normcomp <- function( myJSON){
 
     tailed <- mydata[['sig']][1]
     if( tailed == "oneTailedLeft"){
-      pvalues <- pt(tstatistics, dfs, lower = FALSE)
+      pvalues <- pt(tstatistics, dfs, lower = TRUE)
       MNCpvalue <- pf( Tsquared, P, min.est.n - P, lower = FALSE)
       if( sign(sum( mydata[['score']] - mydata[['pred']])) < 0){
         MNCpvalue <- pf( Tsquared, P, min.est.n - P, lower = FALSE) / 2
@@ -92,7 +92,7 @@ normcomp <- function( myJSON){
     }
 
     if( tailed == "oneTailedRight"){
-      pvalues <- pt(tstatistics, dfs, lower = TRUE)
+      pvalues <- pt(tstatistics, dfs, lower = FALSE)
       if( sign(sum( mydata[['score']] - mydata[['pred']])) > 0){
         MNCpvalue <- pf( Tsquared, P, min.est.n - P, lower = FALSE) / 2
       } else if( sign(sum( difference)) <= 0){
