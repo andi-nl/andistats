@@ -116,21 +116,11 @@ normcomp <- function( myJSON){
     # }
 
 
+    inneredgeOnetailed <- qt( (1 - ( mydata[['conf']][1]  / 100)), dfs, lower.tail = T)
+    outeredgeOnetailed <- qt( (1 - ( mydata[['conf']][1]  / 100)), dfs, lower.tail = F)
 
-    if( tailed == "oneTailedLeft"){
-      inneredge <- qt( (1 - ( mydata[['conf']][1]  / 100)), dfs, lower.tail = T)
-      outeredge <- rep(99999,P)
-    }
-
-    if( tailed == "oneTailedRight"){
-      inneredge <- rep(-99999,P)
-      outeredge <- qt( (1 - ( mydata[['conf']][1]  / 100)), dfs, lower.tail = F)
-    }
-
-    if( tailed == "twoTailed"){
-      inneredge <- qt( (1 - ( mydata[['conf']][1] / 100)) / 2, dfs)
-      outeredge <- abs( qt( (1 - ( mydata[['conf']][1] / 100)) / 2, dfs))
-    }
+    inneredge <- qt( (1 - ( mydata[['conf']][1] / 100)) / 2, dfs)
+    outeredge <- abs( qt( (1 - ( mydata[['conf']][1] / 100)) / 2, dfs))
 
     tstatistics <- round(tstatistics, 2)
 
@@ -157,6 +147,8 @@ normcomp <- function( myJSON){
       tails = mydata[['sig']],
       inneredge = inneredge,
       outeredge = outeredge,
+      inneredgeOnetailed = inneredgeOnetailed,
+      outeredgeOnetailed = outeredgeOnetailed,
       univariatedifferences = difference,
       univariateT = tstatistics,
       univariatedf = dfs,
