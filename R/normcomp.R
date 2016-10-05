@@ -129,9 +129,9 @@ normcomp <- function( myJSON){
     MNCpvalue <- format(round(MNCpvalue, 3), nsmall = 3)
 
 
-    longtestnames <- paste(ANDImetadata[['Long.name.1']], ANDImetadata[['Long.name.2']], ANDImetadata[['Long.name.3']][!is.na(ANDImetadata[['Long.name.3']])])
-    plotnames <- trimws(paste(ANDImetadata[['ID1']], ANDImetadata[['Long.name.2']], ANDImetadata[['Long.name.3']][!is.na(ANDImetadata[['Long.name.3']])]))
-    shortestpossiblenames <- trimws(paste(ANDImetadata[['ID1']], ANDImetadata[['ID2']], ANDImetadata[['ID3']][!is.na(ANDImetadata[['Long.name.3']])]))
+    longtestnames <- paste(ANDImetadata[['long.name.1']], ANDImetadata[['long.name.2']], ANDImetadata[['long.name.3']][!is.na(ANDImetadata[['long.name.3']])])
+    plotnames <- trimws(paste(ANDImetadata[['ID1']], ANDImetadata[['long.name.2']], ANDImetadata[['long.name.3']][!is.na(ANDImetadata[['long.name.3']])]))
+    shortestpossiblenames <- trimws(paste(ANDImetadata[['ID1']], ANDImetadata[['ID2']], ANDImetadata[['ID3']][!is.na(ANDImetadata[['long.name.3']])]))
 
     whichnames <- c()
     for( eachvar in mydata[['uniqueid']]){
