@@ -24,8 +24,8 @@ normcomp <- function( myJSON){
   names( mypatdata)[colnames(mypatdata) == "value"] <- "score"
 
   mypatdata[['patid']] <- as.character(mypatdata[['patid']])
-  mypatdata[['SEX']] <- as.numeric(mypatdata[['SEX']])
-  mypatdata[['age']] <- as.numeric(mypatdata[['age']]) - 65
+  mypatdata[['SEX']] <- as.numeric(as.character(mypatdata[['SEX']]))
+  mypatdata[['age']] <- as.numeric(as.character(mypatdata[['age']])) - 65
   mypatdata[['EDU']] <- as.numeric(as.character(mypatdata[['EDU']]))
   mypatdata[['conf']] <- as.numeric(json$settings$conf)
   mypatdata[['sig']] <- json$settings$sig
