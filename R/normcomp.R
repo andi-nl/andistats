@@ -78,7 +78,7 @@ normcomp <- function( myJSON){
     Tsquared <- ( 1 / g ) * ( ( min.est.n - P ) / ( ( min.est.n - 1 ) * P ) ) * t( mydata[['pred']] - mydata[['score']] ) %*% inv.C %*% ( mydata[['pred']] - mydata[['score']] )
 
     tstatistics <- ((mydata[['score']] - mydata[['pred']]) / ( sqrt(diag(C)) / sqrt(est.n))) * (1 / sqrt(est.n + 1))
-    difference <- (mydata[['score']] - mydata[['pred']])
+    difference <- (mydata[['score']] - mydata[['pred']]) / sqrt(diag(C))
 
     tailed <- mydata[['sig']][1]
     if( tailed == "oneTailedLeft"){
