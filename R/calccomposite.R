@@ -9,7 +9,7 @@
 #' @examples calccomposite( "exampleJSON.json")
 
 calccomposite <- function( inputfile){
-  inputvals <- fromJSON(inputfile)
+  inputvals <- inputfile
   compositescore <- as.data.frame(do.call( compositefunctions[[inputvals$compVar]], as.list(as.numeric(inputvals$args)) ))
   names(compositescore) <- inputvals$compVar
   return(toJSON(compositescore))
