@@ -151,7 +151,7 @@ normcomp <- function( myJSON){
       outeredgeOnetailed = outeredgeOnetailed,
       univariatedifferences = difference,
       univariateT = tstatistics,
-      univariatedf = dfs,
+      N = dfs + 1,
       univariatep = pvalues,
       multivariatedifference = sum(difference),
       multivariateT = rep(Tsquared,each = P),
