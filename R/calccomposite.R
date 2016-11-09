@@ -11,6 +11,6 @@
 calccomposite <- function( inputfile){
   inputvals <- inputfile
   compositescore <- as.data.frame(do.call( compositefunctions[[inputvals$compVar]], as.list(as.numeric(inputvals$args)) ))
-  names(compositescore) <- NULL
-  return(compositescore)
+  names(compositescore) <- "value"
+  return(toJSON(compositescore))
   }
