@@ -46,13 +46,17 @@ normcomp <- function( myJSON){
   totaloutputdataframe <- NULL
   for( pat in unique(mypatdata[['patid']])){
     mydata <- mypatdata[mypatdata[['patid']] == pat,]
-    mydata[['score']] <- ((mydata[['score']] ^ ANDImetadata[['mybestpowertransform']][ANDImetadata[['uniqueid']] %in% mydata[['uniqueid']]] *
-                             sign(ANDImetadata[['mybestpowertransform']][ANDImetadata[['uniqueid']] %in% mydata[['uniqueid']]]) -
-                             ANDImetadata[['mymean.transformedscores']][ANDImetadata[['uniqueid']] %in% mydata[['uniqueid']]]) /
-                            ANDImetadata[['mysd.transformedscores']][ANDImetadata[['uniqueid']] %in% mydata[['uniqueid']]]) *
-      ANDImetadata[['recode']][ANDImetadata[['uniqueid']] %in% mydata[['uniqueid']]]
-    mydata <- mydata[!is.na(mydata$score),]
     whichtests <- unique(mydata[['uniqueid']])
+    for( test in whichtests){
+    mydata[['score']][mydata[['uniqueid']] == test] <- ((mydata[['score']][mydata[['uniqueid']] == test] ^ 
+                              ANDImetadata[['mybestpowertransform']][ANDImetadata[['uniqueid']] == test] *
+                             sign(ANDImetadata[['mybestpowertransform']][ANDImetadata[['uniqueid']] == test]) -
+                             ANDImetadata[['mymean.transformedscores']][ANDImetadata[['uniqueid']] == test]) /
+                            ANDImetadata[['mysd.transformedscores']][ANDImetadata[['uniqueid']] == test]) *
+      ANDImetadata[['recode']][ANDImetadata[['uniqueid']] == test]
+    }
+    mydata <- mydata[!is.na(mydata$score),]
+    
     if( length(whichtests) > 0){
 
     #C <- covariancemat[ rownames(covariancemat) %in% whichtests, colnames(covariancemat) %in% whichtests]
