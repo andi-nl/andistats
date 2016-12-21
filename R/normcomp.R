@@ -42,6 +42,7 @@ normcomp <- function( myJSON){
   covariancemat <- betweencov + withincov
   rownames(covariancemat) <- uniqueID
   colnames(covariancemat) <- uniqueID
+  rownames(beta) <- rep(uniqueID, 4)
 
   totaloutputdataframe <- NULL
   for( pat in unique(mypatdata[['patid']])){
@@ -59,22 +60,31 @@ normcomp <- function( myJSON){
     
     if( length(whichtests) > 0){
 
-    #C <- covariancemat[ rownames(covariancemat) %in% whichtests, colnames(covariancemat) %in% whichtests]
-    C <- covariancemat[ rownames(covariancemat) %in% whichtests, colnames(covariancemat) %in% whichtests,drop=FALSE]
-
+    C <- matrix( NA, length(whichtests), length(whichtests))
+    colnames(C) <- rownames(C) <- whichtests
+    for( test1 in whichtests){
+      for( test2 in whichtests){
+        C[test1, test2] <- covariancemat[test1, test2]
+      }
+    }
+    
     P <- nrow(mydata)
     inv.C <- solve(C)
 
     #
-    rownames(beta) <- rep(ANDImetadata[['uniqueid']],4)
-    betaselection <- beta[rownames(beta) %in% whichtests]
+    betaselection <- NULL
+    for( test in whichtests){
+    betaselection <- c( betaselection, beta[rownames(beta) == test]) ##
+    }
     mydata[['pred']] <- (t( c(1, mydata[['SEX']][1], mydata[['age']][1], mydata[['EDU']][1])) %x% diag(1,P)) %*% betaselection
 
     tstatistics <- NULL
     pvalues <- NULL
     Tsquared <- NULL
-
-    est.n <- ANDImetadata[['Nfinal']][ANDImetadata[['uniqueid']] %in% mydata[['uniqueid']]]
+    est.n <- rep(NA, length(whichtests))
+    for( test in whichtests){
+    est.n[mydata[['uniqueid']] == test] <- ANDImetadata[['Nfinal']][ANDImetadata[['uniqueid']] == test]
+    }
     min.est.n <- min(est.n)
     dfs <- est.n - 1
     g <- ( min.est.n  + 1 ) / min.est.n
