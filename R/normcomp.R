@@ -176,6 +176,7 @@ normcomp <- function( myJSON){
     totaloutputdataframe <- rbind( totaloutputdataframe, myoutputdataframe)
     }
   }
+  rownames(totaloutputdataframe) <- NULL
   myoutputdata <- toJSON( totaloutputdataframe,pretty = T, na = "string")
   #cat(myoutputdata)
   return(myoutputdata)
