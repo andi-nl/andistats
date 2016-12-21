@@ -72,11 +72,12 @@ normcomp <- function( myJSON){
     inv.C <- solve(C)
 
     #
-    betaselection <- NULL
+    #betaselection <- NULL
     for( test in whichtests){
-    betaselection <- c( betaselection, beta[rownames(beta) == test]) ##
+    #betaselection <- c( betaselection, beta[rownames(beta) == test]) ##
+    mydata[['pred']][mydata[['uniqueid']] == test] <- beta[rownames(beta) == test] %*% c(1, mydata[['SEX']][1], mydata[['age']][1], mydata[['EDU']][1])
     }
-    mydata[['pred']] <- (t( c(1, mydata[['SEX']][1], mydata[['age']][1], mydata[['EDU']][1])) %x% diag(1,P)) %*% betaselection
+    
 
     tstatistics <- NULL
     pvalues <- NULL
