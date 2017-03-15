@@ -31,6 +31,7 @@ normcomp <- function( myJSON){
   mypatdata[['sig']] <- json$settings$sig
   mypatdata[['normative']] <- json$settings$normative
   mypatdata$score[mypatdata$score == 999999999] <- NA
+  mypatdata$score <- as.numeric(mypatdata$score)
   # defaultvalues
   ANDImetadata <- sysdata[[mypatdata[['normative']][1]]]$ANDImetadata
   betweencov <- sysdata[[mypatdata[['normative']][1]]]$betweencov
@@ -47,6 +48,7 @@ normcomp <- function( myJSON){
   totaloutputdataframe <- NULL
   for( pat in unique(mypatdata[['patid']])){
     mydata <- mypatdata[mypatdata[['patid']] == pat,]
+    mydata <- mydata[!is.na(mydata$score),]
     whichtests <- unique(mydata[['uniqueid']])
     for( test in whichtests){
     mydata[['score']][mydata[['uniqueid']] == test] <- ((mydata[['score']][mydata[['uniqueid']] == test] ^ 
@@ -56,7 +58,7 @@ normcomp <- function( myJSON){
                             ANDImetadata[['mysd.transformedscores']][ANDImetadata[['uniqueid']] == test]) *
       ANDImetadata[['recode']][ANDImetadata[['uniqueid']] == test]
     }
-    mydata <- mydata[!is.na(mydata$score),]
+    
     
     if( length(whichtests) > 0){
 
